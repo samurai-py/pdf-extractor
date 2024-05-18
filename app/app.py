@@ -1,6 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from .utils.pdf_processor import extract_pdf_data
 
+
 app = FastAPI()
 
 @app.post("/process-pdf/")

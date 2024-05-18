@@ -2,6 +2,7 @@ import pdfplumber
 import re
 import io
 
+
 def extract_pdf_data(pdf_bytes):
     with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
         # Selecionando a primeira página do PDF
