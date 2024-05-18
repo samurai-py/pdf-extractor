@@ -22,14 +22,42 @@ def extract_pdf_data(pdf_bytes):
             "id": extract_value(text, r'Invoice number:\s*(.*?)\n'),
             "payment_due": extract_value(text, r'Payment due:\s*(.*?)\n'),
             "payments": [
-                {
-                    "description": extract_value(text, r'Description\n(.*?)\n'),
-                    "from": extract_value(text, r'From (.*?) '),
-                    "until": extract_value(text, r'Until (.*?)\n'),
-                    "amount": extract_value(text, r'Amount\n(.*?)\n')
-                }
-            ]
+            {
+                "description": "",
+                "from": "",
+                "until": "",
+                "amount": ""
+            }
+        ]
         }
+
+        # Separando a linha em suas partes distintas
+        line_14 = lines[14]
+        dates = re.findall(r'[a-zA-Z]{3} \d{1,2}, \d{4}', line_14)
+        money = re.findall(r'\b(?:USD|\$)\s*\d{1,3}(?:,\d{3})*(?:\.\d{2})?\b', line_14)
+
+        # Removendo as datas e o valor monetário da descrição
+        description = line_14
+        for date in dates:
+            description = description.replace(date, "")
+        for m in money:
+            description = description.replace(m, "")
+
+        # Definindo os valores extraídos nos detalhes da fatura
+        invoice_details["payments"][0]["description"] = description.replace("USD", "").strip()
+
+        # Definindo os valores extraídos nos detalhes da fatura
+        if dates:
+            invoice_details["payments"][0]["from"] = dates[0]
+            if len(dates) > 1:
+                invoice_details["payments"][0]["until"] = dates[1]
+            else:
+                invoice_details["payments"][0]["until"] = ""
+        else:
+            invoice_details["payments"][0]["from"] = ""
+            invoice_details["payments"][0]["until"] = ""
+
+        invoice_details["payments"][0]["amount"] = money[0] if money else ""
 
         recipient_bank_details = {
             "bank_account_name": extract_value(text, r'Bank account name:*(.*?)\n'),
