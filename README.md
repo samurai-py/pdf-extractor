@@ -35,6 +35,7 @@ A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Djang
 └── README.md
 ```
 
+O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, roda a função ```extract_pdf_data```, definida no arquivo ```pdf_processor.py```.
 
 ## Instalação
 
@@ -66,4 +67,4 @@ A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Djang
 Faça uma requisição POST para `/process-pdf` com um arquivo PDF. Por exemplo, usando `curl`:
 ```bash
 curl -X POST "http://127.0.0.1:8000/process-pdf/" -F "file=@/your/path/to-file/index.pdf"
-
+```
