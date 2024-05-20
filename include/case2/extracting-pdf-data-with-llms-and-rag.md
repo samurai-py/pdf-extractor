@@ -5,7 +5,7 @@
 Este texto pretende explicar como resolver o problema principal desse case (Construir uma solução que extraia dados de um PDF), a partir de uma abordagem que use LLMs e RAG. Eu sou ex-jornalista, então tentarei descrever tudo da forma mais simples possível. *OBS.: Caso o leitor não queira pode pular a seção de contextualização e partir direto para a **seção da Solução**.
 
 ## Contextualizando: *RAG e Large Language Models (LLMs)*
-### O que são LLMs
+### O que são LLMs?
 
 Antes de tudo, temos entender o que são *Large Language Models, ou LLMs*. Basicamente, são sistemas computacionais que utilizam redes neurais profundas para processar e gerar linguagem natural (Redes neurais são estruturas inspiradas no funcionamento do cérebro humano), a partir de uma área chamado Processamento de Linguagem Natural (NLP), que busca fazer o "computador" capaz de entender a fala humana. Todo esse processo é bastante complexo, mas algo importante de saber é que computadores só entendem números, não palavras, e existem diversas técnicas para transformar palavras e frases nesses números, chamados de vetores.
 
