@@ -1,5 +1,4 @@
-# pdf-extractor
-
+# pdf-extractor 📄
 Olá. Este é um pequeno projeto que realizei para o teste técnico de uma vaga de AI Engineer. O desafio é composto de duas partes:
 
 - Criar uma API, em Python, que extraia os dados de um arquivo de faturamento em formato ```.pdf``` e retorne as informações mais relevantes.
@@ -80,3 +79,7 @@ Faça uma requisição POST para `/process-pdf` com um arquivo PDF. Por exemplo,
 ```bash
 curl -X POST "http://127.0.0.1:8000/process-pdf/" -F "file=@/your/path/to-file/index.pdf"
 ```
+
+
+#
+### *Autor:* ***Samurai*** 🥷
