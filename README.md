@@ -15,6 +15,12 @@ Essa aplicação foi desenvolvida com base em 3 ferramentas principais:
 - **PDF Plumber**: Uma biblioteca para manipular e extrair informações de arquivos PDF de forma detalhada.
 - **Regex**: Apesar de ser algo bem comum entre desenvolvedores, decidi citar o regex pela importância do mesmo na implementação do processo que identifica os dados a serem coletados.
 
+Para o pessoal que está fazendo minha avaliação: Se não quiserem instalar o projeto localmente, podem checar a resposta da solução abaixo:
+
+![Alt text](include/images/api_response.png?raw=true)
+
+*OBS.: Eu já chequei e esse documento não é real, apenas um exemplo de um software conversor de html para css chamado [Prince](https://www.princexml.com/)*,
+
 ### Estrutura do projeto
 
 A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Django e FastAPI). No final, nosso projeto ficou dividido entre os sequintes subdiretorios:
