@@ -65,23 +65,44 @@ Num cenário normal, a API já apresentaria uma boa solução para resolver o pr
 
 Não importa a abordagem, a arquitetura da nossa aplicação vai funcionar de forma parecida para ambas, conforme pode ser visto na imagem abaixo:
 
-![Alt text2](include/images/arch_rag.png?raw=true)
+![Alt text2](/include/images/arch_rag.png?raw=true)
+
+Aqui, a solução consiste na seguinte lógica:
+
+1. O usuário interage com o modelo de IA através de uma aplicação com interface construída com o framework Chainlit, esta, por sua vez, envia o prompt para um sistema gerenciado e desenvolvido através do Llama-index.
+2. O prompt é transformado em vetor através de um modelo de conversão de texto para vetor (Embeddings) da OpenAI. Algo importante a ser considerado é que o embedding precisa se adaptar ao modelo que irá recebê-lo. Como estaremos usando o modelo gpt 4-turbo da OpenAI, usaremos um Embedding apropriado para ele.
+3. Após o processo de *embedding*, o prompt é enviado ao retriever, que é o componente que procura documentos relevantes relacionados à consulta. O escolhido aqui é o FAISS, retriever desenvolvido pela Meta.
+4. Depois do processo de recuperação pelo retriever, o prompt e o contexto são enviados como um único prompt para o modelo ```gpt-4-turbo```.
+5. O modelo de IA gera uma resposta. Todo o processo dos passos 2 a 4 são gerenciados pelo Llama-index. Agora, a resposta seré enviada para a aplicação do Chainlit.
+6. O Chainlit exibe a resposta pro usuário, que pode continuar interagindo com a aplicação.
+
+**Importante lembrar**: Toda essa arquitetura é uma sugestão básica de implementação. Em um cenário de produção, diversos outros elementos podem (E devem) ser considerados, como mudar o parâmetro ```chat_mode``` do modelo openAI para '*context*', de forma a levar em consideraçao também, na resposta, o histórico de conversa. Nesse caso, poderíamos adicionar mais uma etapa ao nosso fluxo, ao lado do prompt enviado pelo usuário, e que seria correspondente a todo o fluxo de conversa.
 
 ### Ferramentas
 
+As ferramentas utilizadas nessa solução seriam:
+
+- **Chainlit**: Framework para construir a interface da aplicação. Ele facilita a interação do usuário com o modelo de IA, gerenciando a comunicação e apresentando as respostas de forma clara e intuitiva. Nunca usei, mas tenho curiosidade. Realizei um projeto parecido mas usando Streamlit.
+- **Llama-Index**: Sistema que gerencia e desenvolve a lógica de processamento e recuperação de informações. Ele coordena as etapas de embedding, recuperação de documentos e integração com o modelo de IA. Também nunca usei, pois sempre implementei projetos com Langchain, porém, o Llama-index me pareceu bem adequado por simplificar diversos passos relacionados à implementação de RAG e chatbots.
+- **OpenAI Embeddings**: Modelos de conversão de texto para vetor fornecidos pela OpenAI. Esses embeddings são essenciais para transformar o prompt em vetores que podem ser processados pelo retriever e pelo modelo de IA. Os embeddings devem ser compatíveis com o modelo gpt-4-turbo da OpenAI.
+- **FAISS (Facebook AI Similarity Search)**: Ferramenta desenvolvida pela Meta para busca de similaridade de alta eficiência. É utilizada como retriever para encontrar documentos relevantes com base nos vetores gerados pelos embeddings.
+- **GPT-4 Turbo da OpenAI**: Modelo de IA responsável pela geração de respostas. Recebe o prompt original, o contexto relevante e o histórico de chat (quando configurado) para produzir uma resposta coerente e contextualizada.
 
 
 ## Outras abordagens
 
-
-
+Além da arquitetura utilizada, podemos implementar nosso sistema RAG de outras formas
 
 ### Fine-tuning para RAG
 
-
+O RAG, como todo sistema, tem seus pontos fracos, e aqui, o maior desafio é garantir que o retriever esteja recuperando os blocos de textos corretos. Uma das técnicas é treinar o próprio modelo de embeddings para capturar as nuances específicas daquele dataset, ou fazer fine-tuning em algoritmos de *semantic search*. Existem modelos específicos que fazem o processo de busca em bases vetoriais, como o ColBERT e SparseEmbed, e que podem ser ajustados para se adaptarem melhor ao contexto desejado.
 
 ### Ecossistema Azure
 
+A Microsoft hoje é uma das maiores investidoras da OpenAI, e fornece diversas soluções integradas aos modelos GPT. Quando falamos de implemetação de RAG, a Azure, sistema de computação em nuvem da Microsoft, tem serviços que melhoram, tanto o processo, quanto a assertividade das respostas. O sistema do chatbot pode ser construído com o [*Azure Bot Services*](https://azure.microsoft.com/pt-br/products/ai-services/ai-bot-service), a base de conhecimento pode ser implementada com [*CosmosDB*](https://azure.microsoft.com/pt-br/products/cosmos-db) e a recuperação com o exclusivo [*Azure AI Search*](https://azure.microsoft.com/en-us/products/ai-services/ai-search), que possui diversas funcionalidades para melhorar o processo de busca e, por fim, o modelo de IA pode ser acessado através da integração direta com o ChatGPT no [*Azure OpenAI Service*](https://azure.microsoft.com/pt-br/products/ai-services/openai-service).
 
+*Disclaimer: Criei essa sessão porque eu ando procurando obter a certificação AI-102 (Azure AI Engineer Associate), e é sempre bom exercitar conhecimento* :sunglasses: .
 
 ## Conclusão
+
+Espero que possamos implementar uma dessas ou alguma outra solução. Valeu!
