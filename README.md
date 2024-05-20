@@ -35,7 +35,13 @@ A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Djang
 └── README.md
 ```
 
-O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, roda a função ```extract_pdf_data```, definida no arquivo ```pdf_processor.py```.
+O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, executa a função ```extract_pdf_data()```, definida no arquivo ```pdf_processor.py```.
+
+### Desenvolvimento
+
+Pela aplicação ser simples, a implementação da mesma também é simples. A maior parte do desenvolvimento ficou por parte da construção das funções de processamento de pdfs, que constam com várias nuances. Todo o sistema roda em um único projeto escrito 100% em python, enquanto a tipagem e as docstrings foram geradas pelo Github Copilot.
+
+Durante as fases iniciais e de definição das funções de ```process_data```,  tudo foi escrito de forma monolítica. Após isso, refatorei o código para melhorar elegibilidade e eficiência, deixando cada parte do json de resposta sendo processado por uma única função, facilitando também futuras manutenções.
 
 ## Instalação
 

@@ -1,7 +1,8 @@
-import pdfplumber
 import re
 import io
 from typing import Dict, List, Union
+
+import pdfplumber
 
 
 def extract_pdf_data(pdf_bytes: bytes) -> Dict[str, Union[Dict[str, str], List[Dict[str, str]]]]:
