@@ -3,7 +3,7 @@
 Olá. Este é um pequeno projeto que realizei para o teste técnico de uma vaga de AI Engineer. O desafio é composto de duas partes:
 
 - Criar uma API, em Python, que extraia os dados de um arquivo de faturamento em formato ```.pdf``` e retorne as informações mais relevantes.
-- Formular uma arquitetura para resolver o mesmo desafio da parte 1, dessa vez utilizando RAG e LLMs. É um trabalho escrito, que você pode checar clicando [aqui](www.google.com).
+- Formular uma arquitetura para resolver o mesmo desafio da parte 1, dessa vez utilizando RAG e LLMs. É um trabalho escrito, que você pode checar clicando [aqui](/include/case2/extracting-pdf-data-with-llms-and-rag).
 
 Abaixo, você pode conferir o funcionamento da API, assim como todas as suas instruções de uso.
 
