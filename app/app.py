@@ -36,15 +36,15 @@ async def process_pdf(file: UploadFile = File(...)):
         JSONResponse: Extracted data from the PDF.
     """
     if not file.filename.endswith('.pdf'):
-        logger.error("Uploaded file is not a PDF.")
+        logger.error("O arquivo enviado não é um PDF.")
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
     
     try:
         pdf_bytes = await file.read()
         extractor = PDFExtractor(pdf_bytes)
         extracted_data = extractor.extract_data()
-        logger.info("Successfully extracted data from the PDF.")
+        logger.info("Dados extraídos com sucesso do PDF.")
         return asdict(extracted_data)
     except Exception as e:
-        logger.exception("Error processing the PDF.")
+        logger.exception("Erro ao processar o PDF.")
         raise HTTPException(status_code=500, detail="An error occurred while processing the PDF") from e
