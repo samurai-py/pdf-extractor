@@ -65,6 +65,8 @@ Num cenário normal, a API já apresentaria uma boa solução para resolver o pr
 
 Não importa a abordagem, a arquitetura da nossa aplicação vai funcionar de forma parecida para ambas, conforme pode ser visto na imagem abaixo:
 
+![Alt text2](include/images/arch_rag.png?raw=true)
+
 ### Ferramentas
 
 
