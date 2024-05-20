@@ -36,7 +36,7 @@ O RAG é composto de seis principais componentes:
 Quando um usuário faz uma pergunta (Envia um prompt), a consulta é processada para convertê-la em um vetor (Chamado de *Embedding*). Como vimos acima, isso envolve transformar a entrada de linguagem natural em uma representação numérica que captura o significado semântico da consulta.
 
 2. **Base de conhecimento**:
-Sistemas RAG dependem de uma base de conhecimento (Que pode ser uma *vectorstore/vectordatabase*) que contém pedaços de texto. Esses blocos são pré-processados e convertidos em *embeddings* também. Cada pedaço representa uma informação/documento que o chatbot pode usar para gerar respostas.
+Sistemas RAG dependem de uma base de conhecimento (Podendo ser uma *vectorstore/vectordatabase*) que contém pedaços de texto. Esses blocos são pré-processados e convertidos em *embeddings* também. Cada pedaço representa uma informação/documento que o chatbot pode usar para gerar respostas.
 
 3. ***Semantic Search***:
 Técnica consolidada em outros ramos de NLP. Aqui, usamos cálculos para medir a similaridade entre o vetor de entrada e os vetores dos textos na base de conhecimento. O objetivo é identificar textos/documentos que estão semanticamente próximos do que foi perguntado pelo usuário.
