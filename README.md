@@ -40,7 +40,7 @@ A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Djang
 └── README.md
 ```
 
-O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, executa a função ```extract_pdf_data()```, definida no arquivo ```pdf_processor.py```.
+O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, executa a classe ```PDFExtractor()```, definida no arquivo ```pdf_processor.py```. Nossa aplicação consegue lidar tanto com arquivos hospedados localmente, quanto disponibilizados na web.
 
 ### Desenvolvimento
 
@@ -75,9 +75,14 @@ Durante as fases iniciais e de definição das funções de ```process_data```, 
 
 ## Uso
 
-Faça uma requisição POST para `/process-pdf` com um arquivo PDF. Por exemplo, usando `curl`:
+Faça uma requisição POST para `/process-pdf` com um arquivo PDF que esteja na mesma máquina que a aplicação. É possível fazer isso, por exemplo, usando `curl`:
 ```bash
 curl -X POST "http://127.0.0.1:8000/process-pdf/" -F "file=@/your/path/to-file/index.pdf"
+```
+
+Para realizar requisições com um arquivo hospedado na web, você pode seguir o seguinte modelo:
+```bash
+curl -X POST "http://127.0.0.1:8000/process-pdf/" -F "url=https://www.princexml.com/howcome/2016/samples/invoice/index.pdf"
 ```
 
 
