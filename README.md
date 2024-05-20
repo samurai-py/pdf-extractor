@@ -40,7 +40,7 @@ A escolha das ferramentas se deu para se alinhar Às descrições da vaga (Djang
 └── README.md
 ```
 
-O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```\process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, executa a classe ```PDFExtractor()```, definida no arquivo ```pdf_processor.py```. Nossa aplicação consegue lidar tanto com arquivos hospedados localmente, quanto disponibilizados na web.
+O arquivo main.py executa a API na porta escolhida. Ela só tem uma rota, denominada ```/process-pdf```. Ela tem uma restrição para apenas receber arquivos ```.pdf``` e, ao receber uma requisição, executa a classe ```PDFExtractor()```, definida no arquivo ```pdf_processor.py```. Nossa aplicação consegue lidar tanto com arquivos hospedados localmente, quanto disponibilizados na web.
 
 ### Desenvolvimento
 
